@@ -6,3 +6,4 @@ venv/
 *.log
 .pytest_cache/
 playwright-report/
+.DS_Store
