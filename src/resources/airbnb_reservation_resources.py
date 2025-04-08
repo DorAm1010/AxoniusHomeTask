@@ -5,7 +5,7 @@ class ModalResources:
 
 class AirBnBReservationActionsResources:
 
-    RESERVATION_DETAILS_CSS = '[data-section-id="PRODUCT_DETAILS"]'
+    RESERVATION_DETAILS_CSS = '[data-section-id="PRODUCT_DETAILS"], [data-plugin-in-point-id="LISTING_CARD"]'
     RESERVATION_TITLE_XPATH = 'xpath=.//div[@data-testid="checkout-product-details-listing-card"]//div[2]//div | .//div[@id="LISTING_CARD-title"]'
     RESERVATION_RATING_XPATH = 'xpath=.//span[contains(text(), "out of 5")]'
     RESERVATION_DATES_XPATH = 'xpath=.//div[text()="Trip details"]/following-sibling::div//div'
