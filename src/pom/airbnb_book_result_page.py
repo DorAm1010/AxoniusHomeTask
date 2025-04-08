@@ -1,5 +1,6 @@
 from src.utils import try_parse_float
-from src.resources.airbnb_resources import AirBnBActionsResources as Resources, Details
+from src.resources.airbnb_booking_resources import AirBnBBookingPageResources as Resources
+from src.resources.general_resources import Details
 
 
 class AirBnBBookResultActions:

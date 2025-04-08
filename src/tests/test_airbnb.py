@@ -4,7 +4,9 @@ from src.pom.airbnb_actions import AirBnBMainPageActions
 from src.pom.airbnb_results_page_actions import AirBnBResultsActions
 from src.pom.airbnb_book_result_page import AirBnBBookResultActions
 from src.pom.airbnb_reserve_actions import AirBnBReserveActions, ReservationModalActions
-from src.resources.airbnb_resources import AirBnBActionsResources as Resources, Details
+from src.resources.airbnb_resources import AirBnBActionsResources as Resources
+from src.resources.general_resources import Details, GeneralResources
+from src.resources.test_resources import TestResources
 from datetime import datetime
 
 
@@ -24,11 +26,11 @@ def test_apartment_for_2_adults(navigate_to_airbnb):
     page = navigate_to_airbnb
 
     # test meta
-    destination = Resources.TEL_AVIV_DESTINATION
-    start_date, end_date = Resources.FIRST_TEST_DATES
-    guests_dict = Resources.FIRST_TEST_GUESTS_DICT
-    expected_guests = Resources.FIRST_TEST_EXPECTED_GUESTS
-    expected_dates = Resources.FIRST_TEST_EXPECTED_DATES
+    destination = TestResources.TEL_AVIV_DESTINATION
+    start_date, end_date = TestResources.FIRST_TEST_DATES
+    guests_dict = TestResources.FIRST_TEST_GUESTS_DICT
+    expected_guests = TestResources.FIRST_TEST_EXPECTED_GUESTS
+    expected_dates = TestResources.FIRST_TEST_EXPECTED_DATES
 
     # test flow
     # Search destination+dates+guests
@@ -43,9 +45,9 @@ def test_apartment_for_2_adults(navigate_to_airbnb):
     destination_search_result = airbnb_result_actions.get_little_search_destination_results()
     dates_search_result = airbnb_result_actions.get_little_search_dates_results()
     guests_search_result = airbnb_result_actions.get_little_search_guests_results()
-    assert destination in destination_search_result, Resources.EXPECTED_IN_RESULT_FORMAT.format(destination, destination_search_result)
-    assert 'Apr 17' in dates_search_result and '19' == dates_search_result[-2:], Resources.EXPECTED_IN_RESULT_FORMAT.format(expected_dates, dates_search_result)
-    assert expected_guests in guests_search_result, Resources.EXPECTED_IN_RESULT_FORMAT.format(expected_guests, guests_search_result)
+    assert destination in destination_search_result, TestResources.EXPECTED_IN_RESULT_FORMAT.format(destination, destination_search_result)
+    assert 'Apr 17' in dates_search_result and '19' == dates_search_result[-2:], TestResources.EXPECTED_IN_RESULT_FORMAT.format(expected_dates, dates_search_result)
+    assert expected_guests in guests_search_result, TestResources.EXPECTED_IN_RESULT_FORMAT.format(expected_guests, guests_search_result)
 
     highest_rated, rating = airbnb_result_actions.get_highest_rated_result()
     cheapest, min_price = airbnb_result_actions.get_cheapest_result()
@@ -58,12 +60,12 @@ def test_apartment_for_2_adults_and_child(navigate_to_airbnb):
     page = navigate_to_airbnb
     context = page.context
     # test meta
-    destination = Resources.TEL_AVIV_DESTINATION
-    start_date, end_date = Resources.SECOND_TEST_DATES
-    guests_dict = Resources.SECOND_TEST_GUESTS_DICT
-    expected_guests = Resources.SECOND_TEST_EXPECTED_GUESTS
-    expected_dates = Resources.SECOND_TEST_EXPECTED_DATES
-    phone = Resources.SECOND_TEST_PHONE
+    destination = TestResources.TEL_AVIV_DESTINATION
+    start_date, end_date = TestResources.SECOND_TEST_DATES
+    guests_dict = TestResources.SECOND_TEST_GUESTS_DICT
+    expected_guests = TestResources.SECOND_TEST_EXPECTED_GUESTS
+    expected_dates = TestResources.SECOND_TEST_EXPECTED_DATES
+    phone = TestResources.SECOND_TEST_PHONE
 
     expected_guests_in_reservation = '2 adults, 1 child'
 
@@ -79,9 +81,9 @@ def test_apartment_for_2_adults_and_child(navigate_to_airbnb):
     destination_search_result = airbnb_result_actions.get_little_search_destination_results()
     dates_search_result = airbnb_result_actions.get_little_search_dates_results()
     guests_search_result = airbnb_result_actions.get_little_search_guests_results()
-    assert destination in destination_search_result, Resources.EXPECTED_IN_RESULT_FORMAT.format(destination, destination_search_result)
-    assert 'Apr 20' in dates_search_result and '26' == dates_search_result[-2:], Resources.EXPECTED_IN_RESULT_FORMAT.format(expected_dates, dates_search_result)
-    assert expected_guests in guests_search_result, Resources.EXPECTED_IN_RESULT_FORMAT.format(expected_guests, guests_search_result)
+    assert destination in destination_search_result, TestResources.EXPECTED_IN_RESULT_FORMAT.format(destination, destination_search_result)
+    assert 'Apr 20' in dates_search_result and '26' == dates_search_result[-2:], TestResources.EXPECTED_IN_RESULT_FORMAT.format(expected_dates, dates_search_result)
+    assert expected_guests in guests_search_result, TestResources.EXPECTED_IN_RESULT_FORMAT.format(expected_guests, guests_search_result)
 
     highest_rated, rating = airbnb_result_actions.get_highest_rated_result()
     assert highest_rated is not None, 'Could not get highest rated result'
@@ -122,7 +124,7 @@ def test_apartment_for_2_adults_and_child(navigate_to_airbnb):
         (f'Dates in reservation page ({reserve_details[Details.DATES]}) and in booking (start: {booking_start_dates},'
          f' end: {booking_end_dates}) weren`t the same')
 
-    for name in Resources.NUMBER_COMPARISONS:
+    for name in GeneralResources.NUMBER_COMPARISONS:
         assert round(reserve_details[name]) == round(book_it_card_details[name]), \
             (f'Expected {name.value} in reservation details ({reserve_details[name]}) to equal'
              f'the one in booking page details ({book_it_card_details[name]})')

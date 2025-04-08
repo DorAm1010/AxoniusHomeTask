@@ -1,11 +1,9 @@
 class ModalResources:
-    MODAL_COUNTRYCODE_DROPDOWN_CSS = 'select[data-testid="login-signup-countrycode"]'
-    MODAL_COUNTRYCODE_DROPDOWN_XPATH = 'xpath=.//select[@data-testid="login-signup-countrycode"]'
     ISRAEL_OPTION_CSS = 'option[value="972IL"]'
     PHONE_NUMBER_INPUT_CSS = 'input[data-testid="login-signup-phonenumber"]'
 
 
-class AirBnBActionsResources:
+class AirBnBReservationActionsResources:
 
     RESERVATION_DETAILS_CSS = '[data-section-id="PRODUCT_DETAILS"]'
     RESERVATION_TITLE_XPATH = 'xpath=.//div[@data-testid="checkout-product-details-listing-card"]//div[2]//div | .//div[@id="LISTING_CARD-title"]'

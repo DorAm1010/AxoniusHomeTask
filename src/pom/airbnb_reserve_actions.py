@@ -1,5 +1,6 @@
 import time
-from src.resources.airbnb_resources import AirBnBActionsResources as Resources, Details
+from src.resources.airbnb_reservation_resources import AirBnBReservationActionsResources as Resources, ModalResources
+from src.resources.general_resources import Details
 from src.utils import try_parse_float
 
 
@@ -12,7 +13,7 @@ class ReservationModalActions:
 
     def input_israel_phone(self, phone: str):
         self.select_israel_prefix()
-        input_field = self.page.locator(Resources.PHONE_NUMBER_INPUT_CSS)
+        input_field = self.page.locator(ModalResources.PHONE_NUMBER_INPUT_CSS)
         input_field.fill(phone)
         time.sleep(10)
 
