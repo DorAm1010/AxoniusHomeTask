@@ -1,12 +1,11 @@
 import time
-from webbrowser import Error
-
 from src.resources.airbnb_resources import AirBnBActionsResources as Resources, Details
 from src.utils import try_parse_float
 
 
 class ReservationModalActions:
     def __init__(self, page):
+        time.sleep(5)
         self.page = page
 
     def select_israel_prefix(self):
