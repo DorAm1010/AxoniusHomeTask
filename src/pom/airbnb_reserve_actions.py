@@ -5,21 +5,20 @@ from src.utils import try_parse_float
 
 class ReservationModalActions:
     def __init__(self, page):
-        time.sleep(5)
         self.page = page
 
     def select_israel_prefix(self):
-        self.page.locator(Resources.MODAL_COUNTRYCODE_DROPDOWN_CSS).click()
-        self.page.locator(Resources.ISRAEL_OPTION_CSS).click()
+        self.page.select_option('select[id="country"]', value='972IL')
 
     def input_israel_phone(self, phone: str):
-        # self.select_israel_prefix()
+        self.select_israel_prefix()
         input_field = self.page.locator(Resources.PHONE_NUMBER_INPUT_CSS)
         input_field.fill(phone)
         time.sleep(10)
 
 class AirBnBReserveActions:
     def __init__(self, page):
+        page.locator(Resources.RESERVATION_DETAILS_CSS).nth(0).wait_for(timeout=10000)
         self.page = page
         self.reservation_details = page.locator(Resources.RESERVATION_DETAILS_CSS)
 
@@ -73,9 +72,10 @@ class AirBnBReserveActions:
     def get_reservation_details(self):
         calculation, all_nights_price = self._get_calculated_price()
         ppn, nights = calculation.split(' x ')
-        ppn = try_parse_float(ppn, text_description='Price Per Night', start_idx=1)
-        nights = int(try_parse_float(nights.split()[0], text_description='Total nights'))
-        all_nights_price = try_parse_float(all_nights_price, text_description='Calculated price', start_idx=1)
+        ppn = try_parse_float(ppn, text_description=Details.PPN.value, start_idx=1)
+        nights = int(try_parse_float(nights.split()[0], text_description=Details.TOTAL_NIGHTS.value))
+        all_nights_price = try_parse_float(all_nights_price,
+                                           text_description=Details.TOTAL_NIGHTS_PRICE.value, start_idx=1)
         result = {
             Details.TITLE: self._get_reservation_title(),
             Details.RATING: self._get_reservation_rating(),

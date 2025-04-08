@@ -82,7 +82,6 @@ def test_apartment_for_2_adults_and_child(navigate_to_airbnb):
     assert destination in destination_search_result, Resources.EXPECTED_IN_RESULT_FORMAT.format(destination, destination_search_result)
     assert 'Apr 20' in dates_search_result and '26' == dates_search_result[-2:], Resources.EXPECTED_IN_RESULT_FORMAT.format(expected_dates, dates_search_result)
     assert expected_guests in guests_search_result, Resources.EXPECTED_IN_RESULT_FORMAT.format(expected_guests, guests_search_result)
-    # TODO - add a flow where i click the guests and verify theres a child
 
     highest_rated, rating = airbnb_result_actions.get_highest_rated_result()
     assert highest_rated is not None, 'Could not get highest rated result'

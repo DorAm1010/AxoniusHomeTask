@@ -6,8 +6,6 @@ class AirBnBMainPageActions:
     def __init__(self, page):
         self.page = page
         self.destination_input_box = page.get_by_placeholder(Resources.DESTINATION_BOX_PLACEHOLDER)
-        # self.select_guests_element = page
-        # print("\nGot Here\n")
 
     def input_destination(self, destination: str):
         self.destination_input_box.fill(destination)
@@ -37,13 +35,11 @@ class AirBnBMainPageActions:
 
     def select_guests(self, guests_dict: Dict[str, int]):
         self._assert_guests_panel_opened()
-        # button[data-testid="stepper-adults-increase-button"]
         for guests in guests_dict:
             guests_increase_button = self.page.locator(Resources.INCREASE_GUEST_BUTTON_ID.format(guests.lower()))
             for _ in range(guests_dict[guests]):
                 guests_increase_button.click()
 
     def click_search(self):
-        # self.page.locator(Resources.SEARCH_BUTTON_CSS).click()
         self.page.get_by_role('button', name='Search').click()
 
