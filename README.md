@@ -12,7 +12,7 @@ The project focuses on two key test cases that simulate searching for apartments
 Clone the repository to your local machine.
 
 ```bash
-git clone https://github.com/your-username/your-repository.git
+git clone https://github.com/DorAm1010/AxoniusHomeTask.git
 cd your-repository
 ```
 ### 2. Create a Virtual Environment
